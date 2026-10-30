@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box');
+        const startY = 0;
+        const endY = 200;
+        const duration = 2000; // Tempo total da transição em milissegundos
+        const interval = 20; // Intervalo entre atualizações em milissegundos
+        const numSteps = duration / interval;
+        const stepSize = (endY - startY) / numSteps;
+
+        function transitionVertical() {
+            let currentY = startY;
+            let step = 0;
+
+            const intervalId = setInterval(function () {
+                if (step < numSteps) {
+                    currentY += stepSize;
+                    box.style.top = currentY + 'px';
+                    console.log(`Valor de Y: ${currentY.toFixed(2)}`);
+                    step++;
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, interval);
+        }
+
+        transitionVertical();
+    </script>
+</body>
+</html>
